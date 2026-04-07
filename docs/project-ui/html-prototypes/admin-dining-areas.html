@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant | Dining Areas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex">
+
+    <!-- Global Sidebar (All Admins will copy this sidebar) -->
+    <aside class="w-64 bg-slate-900 text-white min-h-screen flex flex-col hidden md:flex">
+        <div class="p-6">
+            <h2 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Grand Restaurant</h2>
+            <p class="text-slate-400 text-xs mt-1 uppercase tracking-widest font-semibold">Admin Panel</p>
+        </div>
+        <nav class="flex-1 px-4 space-y-2 mt-4">
+            <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-colors font-medium">Dashboard Overview</a>
+            <!-- Active State Navigation Link -->
+            <a href="#" class="flex items-center px-4 py-3 bg-indigo-600/20 text-indigo-400 rounded-xl transition-colors font-bold border border-indigo-500/30">Dining Areas</a>
+            <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-colors font-medium">Table Layouts</a>
+            <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-colors font-medium">Live Walk-Ins</a>
+        </nav>
+        <div class="p-6 border-t border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">AM</div>
+                <div>
+                    <p class="text-sm font-bold">Admin Manager</p>
+                    <p class="text-xs text-slate-400">Sign Out</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-10 overflow-y-auto w-full">
+        
+        <!-- Header Section -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-900">Dining Area Layout</h1>
+                <p class="text-slate-500 font-medium mt-1">Manage the physical zones where tables can be placed.</p>
+            </div>
+            <!-- Member 2 Add Zone Button -->
+            <!-- In Spring Boot, change this to: <a th:href="@{/dining-areas/add}"> -->
+            <button class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-2.5 px-5 rounded-xl shadow-lg shadow-indigo-600/20 transform hover:-translate-y-0.5 transition-all">
+                + Add New Zone
+            </button>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                <p class="text-slate-500 font-semibold text-sm mb-1 uppercase tracking-wider">Total Zones</p>
+                <p class="text-4xl font-bold text-slate-900">3</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                <p class="text-slate-500 font-semibold text-sm mb-1 uppercase tracking-wider">Total Maximum Capacity</p>
+                <p class="text-4xl font-bold text-indigo-600">85<span class="text-lg font-medium text-slate-400 ml-1">Guests</span></p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative overflow-hidden">
+                <p class="text-slate-500 font-semibold text-sm mb-1 uppercase tracking-wider">Weather Status</p>
+                <p class="text-2xl font-bold text-green-600 mt-2">Patio Open</p>
+                <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-green-500/10 rounded-full blur-xl"></div>
+            </div>
+        </div>
+
+        <!-- The List of Zones -->
+        <h2 class="text-xl font-bold text-slate-800 mb-4">Active Zones</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Zone Card 1 -->
+            <!-- In Spring Boot, wrap this in: <div th:each="area : ${diningAreas}"> -->
+            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-indigo-300 transition-colors shadow-sm group">
+                <div class="h-2 bg-indigo-600 w-full"></div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-slate-900">The VIP Lounge</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-full border border-indigo-100">Premium</span>
+                    </div>
+                    
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2">Exclusive quiet zone with heavily cushioned booths and low lighting. Minimum booking fee applies.</p>
+                    
+                    <div class="border-t border-slate-100 pt-4 flex justify-between items-center mt-auto">
+                        <div>
+                            <p class="text-xs text-slate-400 font-semibold uppercase">Capacity</p>
+                            <p class="font-bold text-slate-800">20 Guests</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="text-slate-500 hover:text-indigo-600 font-semibold text-sm transition-colors py-1 px-3 border border-slate-200 rounded-lg hover:bg-slate-50">Edit</button>
+                            <button class="text-red-500 hover:text-white font-semibold text-sm transition-colors py-1 px-3 border border-red-100 rounded-lg hover:bg-red-500">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zone Card 2 -->
+            <div class="bg-white border border-slate-200 text-slate-400 rounded-2xl overflow-hidden shadow-sm opacity-60">
+                <div class="h-2 bg-slate-200 w-full"></div>
+                <div class="p-6 relative">
+                    <div class="absolute inset-0 bg-slate-50/50 backdrop-blur-[2px] z-10 flex items-center justify-center">
+                        <div class="bg-white px-4 py-2 rounded-lg font-bold text-slate-500 shadow border border-slate-200">Zone Closed for Cleaning</div>
+                    </div>
+                    <div class="flex justify-between items-start mb-4 opacity-50">
+                        <h3 class="text-xl font-bold">Outdoor Patio</h3>
+                    </div>
+                    <p class="text-sm mb-6">Open-air seating with overhead string lights. Beautiful during sunset.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+</body>
+</html>

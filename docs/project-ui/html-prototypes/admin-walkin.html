@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walk-In POS Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Roboto', sans-serif; }</style>
+</head>
+<body class="bg-slate-200 min-h-screen text-slate-900 p-4 flex flex-col pt-20">
+
+    <!-- Fixed Top Status Bar (iPad style) -->
+    <header class="bg-slate-900 text-white flex justify-between items-center px-6 py-4 shadow-md rounded-t-2xl fixed top-4 left-4 right-4 z-50">
+        <h1 class="text-xl font-black tracking-widest uppercase">Live FOH Dashboard</h1>
+        <div class="flex gap-6 text-sm font-bold text-slate-400">
+            <span>Server: <span class="text-white">Sarah J.</span></span>
+            <span>Queue: <span class="text-orange-400">3 Waiting</span></span>
+            <span class="text-white">19:38 | OCT 27</span>
+        </div>
+    </header>
+
+    <div class="flex-1 bg-white rounded-b-2xl shadow-xl overflow-y-auto p-6 border-x border-b border-slate-300">
+        
+        <!-- Filter Tabs -->
+        <div class="flex gap-8 border-b-2 border-slate-100 mb-6 pb-2">
+            <button class="text-xl font-bold border-b-4 border-slate-800 pb-2 text-slate-900">All Tables (8)</button>
+            <button class="text-xl font-bold text-slate-400 hover:text-slate-600 pb-2">Occupied (4)</button>
+            <button class="text-xl font-bold text-green-500 hover:text-green-600 pb-2">Open (4)</button>
+        </div>
+
+        <!-- The Massive POS Matrix Grid -->
+        <!-- In Spring Boot, this entire grid is powered by dynamically looping through `Walkin` and `Table` DB entries. -->
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+
+            <!-- OCCUPIED TABLE CARD (RED) -->
+            <div class="bg-red-50 border-2 border-red-500 rounded-2xl flex flex-col overflow-hidden shadow-sm relative group cursor-pointer hover:-translate-y-1 transition-transform">
+                <div class="bg-red-500 text-white text-center font-bold py-1.5 tracking-wider text-sm uppercase">Occupied</div>
+                <div class="flex-1 p-4 flex flex-col items-center justify-center relative">
+                    <h2 class="text-5xl font-black text-red-900 mb-1">T10</h2>
+                    <p class="text-lg font-bold text-red-700">4 Pax</p>
+                    <p class="text-sm font-bold text-red-500 mt-2 flex items-center gap-1">⌚ 55m</p>
+                    
+                    <!-- Hover Action Overlay -->
+                    <div class="absolute inset-0 bg-red-900/90 hidden group-hover:flex flex-col items-center justify-center p-4">
+                        <button class="w-full bg-white text-red-900 font-bold py-2 rounded-lg mb-2 shadow hover:bg-slate-100">Add Item</button>
+                        <button class="w-full border border-white text-white font-bold py-2 rounded-lg hover:bg-white/10">Checkout / Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OPEN TABLE CARD (GREEN) -->
+            <div class="bg-green-50 border-2 border-green-500 rounded-2xl flex flex-col overflow-hidden shadow-sm relative group cursor-pointer hover:-translate-y-1 transition-transform">
+                <div class="bg-green-500 text-white text-center font-bold py-1.5 tracking-wider text-sm uppercase">Open</div>
+                <div class="flex-1 p-4 flex flex-col items-center justify-center">
+                    <h2 class="text-5xl font-black text-green-900 mb-1">T11</h2>
+                    <p class="text-lg font-bold text-green-700">2 Seats</p>
+                    <p class="text-sm font-bold text-green-600 mt-2 uppercase">Ready</p>
+                    
+                    <!-- Hover Action Overlay -->
+                    <div class="absolute inset-0 bg-green-900/90 hidden group-hover:flex flex-col items-center justify-center p-4">
+                        <button class="w-full bg-white text-green-900 font-bold py-2 rounded-lg shadow hover:bg-slate-100">+ Seat Guest</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OCCUPIED TABLE CARD (RESERVED GUEST SEATED) -->
+            <div class="bg-red-50 border-2 border-red-500 rounded-2xl flex flex-col overflow-hidden shadow-sm relative group cursor-pointer hover:-translate-y-1 transition-transform">
+                <div class="bg-red-500 text-white text-center font-bold py-1.5 tracking-wider text-sm uppercase">Occupied</div>
+                <div class="flex-1 p-4 flex flex-col items-center justify-center relative">
+                    <h2 class="text-5xl font-black text-red-900 mb-1">T12</h2>
+                    <p class="text-lg font-bold text-red-700">6 Pax</p>
+                    <!-- VIP indicator -->
+                    <p class="text-xs font-black bg-yellow-400 text-yellow-900 px-2 py-0.5 mt-1 rounded uppercase">VIP: Miller</p>
+                    <p class="text-sm font-bold text-red-500 mt-2">1h 20m</p>
+
+                    <div class="absolute inset-0 bg-red-900/90 hidden group-hover:flex flex-col items-center justify-center p-4">
+                         <button class="w-full border border-white text-white font-bold py-2 rounded-lg hover:bg-white/10">Checkout / Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OPEN TABLE CARDS (FILLER DATA) -->
+            <div class="bg-green-50 border-2 border-green-500 rounded-2xl flex flex-col overflow-hidden">
+                <div class="bg-green-500 text-white text-center font-bold py-1.5 tracking-wider text-sm uppercase">Open</div>
+                <div class="flex-1 p-4 flex flex-col items-center justify-center opacity-60">
+                    <h2 class="text-5xl font-black text-green-900 mb-1">T13</h2>
+                    <p class="text-lg font-bold text-green-700">4 Seats</p>
+                </div>
+            </div>
+            
+             <div class="bg-green-50 border-2 border-green-500 rounded-2xl flex flex-col overflow-hidden">
+                <div class="bg-green-500 text-white text-center font-bold py-1.5 tracking-wider text-sm uppercase">Open</div>
+                <div class="flex-1 p-4 flex flex-col items-center justify-center opacity-60">
+                    <h2 class="text-5xl font-black text-green-900 mb-1">T14</h2>
+                    <p class="text-lg font-bold text-green-700">2 Seats</p>
+                </div>
+            </div>
+            
+            <!-- OCCUPIED TABLE CARDS (FILLER DATA) -->
+             <div class="bg-red-50 border-2 border-red-500 rounded-2xl flex flex-col overflow-hidden">
+                <div class="bg-red-500 text-white text-center font-bold py-1.5 tracking-wider text-sm uppercase">Occupied</div>
+                <div class="flex-1 p-4 flex flex-col items-center justify-center opacity-60">
+                    <h2 class="text-5xl font-black text-red-900 mb-1">T15</h2>
+                    <p class="text-lg font-bold text-red-700">2 Pax</p>
+                    <p class="text-sm font-bold text-red-500 mt-2">10m</p>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+</body>
+</html>
